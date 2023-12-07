@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/widgets/custom_button.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
+import 'package:note_app/widgets/modal_bottom_sheet.dart';
 import 'package:note_app/widgets/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
@@ -55,19 +57,4 @@ class NotesView extends StatelessWidget {
         body: CustomListView());
   }
 }
-class ModalBottomSheet extends StatelessWidget {
-  const ModalBottomSheet({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        child: Column(
-          children: [
-            CustomTextField(hint: 'Title'),
-            CustomTextField(hint: 'Content',
-            maxLines: 5,)
-          ],
-        ),
-    );
-  }
-}
