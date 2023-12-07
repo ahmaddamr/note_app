@@ -1,37 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/widgets/custom_button.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
-import 'package:note_app/widgets/modal_bottom_sheet.dart';
-import 'package:note_app/widgets/notes_list_view.dart';
 
-class NotesView extends StatelessWidget {
-  const NotesView({super.key});
+class EditNoteView extends StatelessWidget {
+  const EditNoteView({super.key});
+  // static String id = 'EditView' ;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () 
-          {
-            showModalBottomSheet(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16)
-              ),
-              context: context, builder: (context)
-            
-            {
-              return const  ModalBottomSheet() ;
-            });
-          },
-          child: const Icon(Icons.add),
-        ),
-        // backgroundColor: Color(0xff303030),
-        appBar: AppBar(
+      appBar: AppBar(
           // backgroundColor: Color(0xff303030),
           title: const Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 5.0),
             child: Text(
-              'Notes',
+              'Edit Notes',
               style: TextStyle(color: Colors.white, fontSize: 23),
             ),
           ),
@@ -54,7 +36,14 @@ class NotesView extends StatelessWidget {
             )
           ],
         ),
-        body:const CustomListView());
+      body:  Column(
+            children: [
+              CustomTextField(hint: 'Title'),
+              CustomTextField(hint: 'Content',
+              maxLines: 7,),
+              
+            ],
+          ),
+    );
   }
 }
-
