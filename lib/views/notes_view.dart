@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/widgets/note_item.dart';
 import 'package:note_app/widgets/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
@@ -8,6 +7,8 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(onPressed: () {},
+      child:const Icon(Icons.add),),
         // backgroundColor: Color(0xff303030),
         appBar: AppBar(
           // backgroundColor: Color(0xff303030),
