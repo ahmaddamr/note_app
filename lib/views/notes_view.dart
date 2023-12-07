@@ -63,7 +63,9 @@ class ModalBottomSheet extends StatelessWidget {
     return Container(
         child: Column(
           children: [
-            CustomTextField(hint: 'Title')
+            CustomTextField(hint: 'Title'),
+            CustomTextField(hint: 'Content',
+            maxLines: 5,)
           ],
         ),
     );
