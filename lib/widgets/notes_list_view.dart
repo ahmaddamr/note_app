@@ -7,10 +7,13 @@ class CustomListView extends StatelessWidget {
   // final  var data = const [] ;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context , index)
-      {
-        return const NoteItem() ;
-      });
+    return Padding(
+      padding: const EdgeInsets.symmetric( vertical: 10.0),
+      child: ListView.builder(
+        itemBuilder: (context , index)
+        {
+          return const NoteItem() ;
+        }),
+    );
   }
 }

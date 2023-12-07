@@ -7,8 +7,16 @@ class NotesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {},
-      child:const Icon(Icons.add),),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () 
+          {
+            showModalBottomSheet(context: context, builder: (context)
+            {
+              return  ModalBottomSheet() ;
+            });
+          },
+          child: const Icon(Icons.add),
+        ),
         // backgroundColor: Color(0xff303030),
         appBar: AppBar(
           // backgroundColor: Color(0xff303030),
@@ -39,5 +47,15 @@ class NotesView extends StatelessWidget {
           ],
         ),
         body: CustomListView());
+  }
+}
+class ModalBottomSheet extends StatelessWidget {
+  const ModalBottomSheet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        
+    );
   }
 }
