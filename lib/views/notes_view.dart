@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/widgets/custom_text_field.dart';
 import 'package:note_app/widgets/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
@@ -10,7 +11,12 @@ class NotesView extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () 
           {
-            showModalBottomSheet(context: context, builder: (context)
+            showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16)
+              ),
+              context: context, builder: (context)
+            
             {
               return  ModalBottomSheet() ;
             });
@@ -55,7 +61,11 @@ class ModalBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        
+        child: Column(
+          children: [
+            CustomTextField(hint: 'Title')
+          ],
+        ),
     );
   }
 }
