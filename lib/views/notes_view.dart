@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/widgets/note_item.dart';
+import 'package:note_app/widgets/notes_list_view.dart';
 
 class NotesView extends StatelessWidget {
   const NotesView({super.key});
@@ -36,6 +37,6 @@ class NotesView extends StatelessWidget {
             )
           ],
         ),
-        body: NoteItem());
+        body: CustomListView());
   }
 }
