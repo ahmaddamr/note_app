@@ -13,7 +13,7 @@ class EditNoteView extends StatelessWidget {
           title: const Padding(
             padding: const EdgeInsets.only(left: 5.0),
             child: Text(
-              'Edit Notes',
+              'Edit Note',
               style: TextStyle(color: Colors.white, fontSize: 23),
             ),
           ),
@@ -29,8 +29,8 @@ class EditNoteView extends StatelessWidget {
                     color: Colors.white.withOpacity(0.1)),
                 child: IconButton(
                   onPressed: () {},
-                  icon:const Icon(Icons.search),
-                  iconSize: 25,
+                  icon:const Icon(Icons.done_outline),
+                  iconSize: 23,
                 ),
               ),
             )
