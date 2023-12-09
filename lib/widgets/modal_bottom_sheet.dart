@@ -7,7 +7,7 @@ class ModalBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AddNoteForm();
+    return const AddNoteForm();
   }
 }
 
