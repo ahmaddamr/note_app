@@ -6,29 +6,30 @@ import 'package:note_app/widgets/custom_button.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
 class ModalBottomSheet extends StatefulWidget {
-    const ModalBottomSheet({super.key});
+  const ModalBottomSheet({super.key});
 
   @override
   State<ModalBottomSheet> createState() => _ModalBottomSheetState();
 }
 
 class _ModalBottomSheetState extends State<ModalBottomSheet> {
-  bool isloading = false ;
+  bool isloading = false;
 
   @override
   Widget build(BuildContext context) {
-    return  BlocConsumer<AddNoteCubit, AddNoteState>(
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
       listener: (context, state) {
         if (state is AddNoteSuccess) {
           Navigator.pop(context) ;
-        }
-        if (state is AddNoteFailure) {
-          print('failed ${state.errMessage}') ;
+        } 
+        if (state is AddNoteFailure)
+        {
+          print('Failed ${state.errMessage}') ;
         }
       },
       builder: (context, state) {
         return ModalProgressHUD(
-          inAsyncCall: state is AddNoteLoading ? true : false ,
+          inAsyncCall: state is AddNoteLoading ? true : false,
           child: AddNoteForm());
       },
     );
