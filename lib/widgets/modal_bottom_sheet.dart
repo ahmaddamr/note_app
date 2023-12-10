@@ -31,9 +31,12 @@ class _ModalBottomSheetState extends State<ModalBottomSheet> {
           }
         },
         builder: (context, state) {
-          return ModalProgressHUD(
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: AddNoteForm());
+          return AbsorbPointer(
+            absorbing: state is AddNoteLoading ? true : false,
+            child: ModalProgressHUD(
+                inAsyncCall: state is AddNoteLoading ? true : false,
+                child:const AddNoteForm()),
+          );
         },
       ),
     );
@@ -54,6 +57,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
+  final bool isloading ;
+
+  _AddNoteFormState({this.isloading = false});
   @override
   Widget build(BuildContext context) {
     return Form(
