@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:note_app/cubits/cubit/add_note_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/widgets/custom_button.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
@@ -13,25 +14,28 @@ class ModalBottomSheet extends StatefulWidget {
 }
 
 class _ModalBottomSheetState extends State<ModalBottomSheet> {
-  bool isloading = false;
+  // bool isloading = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddNoteCubit, AddNoteState>(
-      listener: (context, state) {
-        if (state is AddNoteSuccess) {
-          Navigator.pop(context) ;
-        } 
-        if (state is AddNoteFailure)
-        {
-          print('Failed ${state.errMessage}') ;
-        }
-      },
-      builder: (context, state) {
-        return ModalProgressHUD(
-          inAsyncCall: state is AddNoteLoading ? true : false,
-          child: AddNoteForm());
-      },
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: BlocConsumer<AddNoteCubit, AddNoteState>(
+        listener: (context, state) {
+          if (state is AddNoteSuccess) {
+            Navigator.pop(context);
+            print('done') ;
+          }
+          if (state is AddNoteFailure) {
+            print('Failed ${state.errMessage}');
+          }
+        },
+        builder: (context, state) {
+          return ModalProgressHUD(
+              inAsyncCall: state is AddNoteLoading ? true : false,
+              child: AddNoteForm());
+        },
+      ),
     );
   }
 }
@@ -78,6 +82,12 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   onPressed: () {
                     if (FormKey.currentState!.validate()) {
                       FormKey.currentState!.save();
+                      NoteModel noteModel = NoteModel(
+                          title: title!,
+                          subtitle: subTitle!,
+                          date: DateTime.now().toString(),
+                          color: Colors.amber.value);
+                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                     } else {
                       autovalidateMode = AutovalidateMode.always;
                     }

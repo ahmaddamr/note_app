@@ -9,12 +9,14 @@ debugPrint('change = $change') ;
 
   @override
   void onClose(BlocBase bloc) {
-    // TODO: implement onClose
+debugPrint('Close = $bloc') ;
+
   }
 
   @override
   void onCreate(BlocBase bloc) {
-    // TODO: implement onCreate
+  debugPrint('Create = $bloc') ;
+
   }
 
   @override
