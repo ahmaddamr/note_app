@@ -66,40 +66,44 @@ class _AddNoteFormState extends State<AddNoteForm> {
       key: FormKey,
       autovalidateMode: autovalidateMode,
       child: Container(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomTextField(
+        child: Padding(
+          padding:  EdgeInsets.only(left: 5.0, right: 5,
+          bottom: MediaQuery.of(context).viewInsets.bottom  ),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomTextField(
+                    onSaved: (value) {
+                      title = value;
+                    },
+                    hint: 'title'),
+                CustomTextField(
                   onSaved: (value) {
-                    title = value;
+                    subTitle = value;
                   },
-                  hint: 'title'),
-              CustomTextField(
-                onSaved: (value) {
-                  subTitle = value;
-                },
-                hint: 'subTitle',
-                maxLines: 7,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              CustomButton(
-                  onPressed: () {
-                    if (FormKey.currentState!.validate()) {
-                      FormKey.currentState!.save();
-                      NoteModel noteModel = NoteModel(
-                          title: title!,
-                          subtitle: subTitle!,
-                          date: DateTime.now().toString(),
-                          color: Colors.amber.value);
-                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    } else {
-                      autovalidateMode = AutovalidateMode.always;
-                    }
-                  },
-                  text: 'Add')
-            ],
+                  hint: 'subTitle',
+                  maxLines: 7,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                CustomButton(
+                    onPressed: () {
+                      if (FormKey.currentState!.validate()) {
+                        FormKey.currentState!.save();
+                        NoteModel noteModel = NoteModel(
+                            title: title!,
+                            subtitle: subTitle!,
+                            date: DateTime.now().toString(),
+                            color: Colors.amber.value);
+                        BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                      } else {
+                        autovalidateMode = AutovalidateMode.always;
+                      }
+                    },
+                    text: 'Add')
+              ],
+            ),
           ),
         ),
       ),
