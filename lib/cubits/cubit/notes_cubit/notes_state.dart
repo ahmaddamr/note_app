@@ -8,18 +8,18 @@ sealed class NotesState extends Equatable {
 }
 
 final class NotesInitial extends NotesState {}
-final class NotesLoading extends NotesState {}
-final class NotesSuccess extends NotesState {
-    final List<NoteModel> notes;
+// final class NotesLoading extends NotesState {}
+// final class NotesSuccess extends NotesState {
+//     final List<NoteModel> notes;
 
-  NotesSuccess(this.notes);
-}
+//   NotesSuccess(this.notes);
+// }
 
-final class NotesFailed extends NotesState {
-  final String errMessage ;
+// final class NotesFailed extends NotesState {
+//   final String errMessage ;
 
-  NotesFailed(this.errMessage);
-}
+//   NotesFailed(this.errMessage);
+// }
 
 
 
