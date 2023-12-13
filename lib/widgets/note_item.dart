@@ -18,7 +18,7 @@ class NoteItem extends StatelessWidget {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(15.0),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: Container(
@@ -28,7 +28,7 @@ class NoteItem extends StatelessWidget {
                   top: 15,
                   bottom: 15
                 ) ,
-                color: Color(0xffFFCD7A),
+                color: Color(note.color),
                 child: Row(
                   children: [
                       Padding(
@@ -62,7 +62,7 @@ class NoteItem extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(
-                              left: 80.0, bottom: 70),
+                              left: 30.0, bottom: 70),
                           child: IconButton(
                             onPressed: () {},
                             icon: Icon(

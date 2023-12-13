@@ -16,17 +16,16 @@ class NotesView extends StatefulWidget {
 
 class _NotesViewState extends State<NotesView> {
 
-//   @override
-// initState()
-// {
-//   BlocProvider.of<NotesCubit>(context).fetchAllanotes() ;
-//   super.initState() ;
-// }
+  @override
+initState()
+{
+  BlocProvider.of<NotesCubit>(context).fetchAllanotes() ;
+  super.initState() ;
+}
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NotesCubit(),
-      
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
@@ -70,7 +69,30 @@ class _NotesViewState extends State<NotesView> {
               )
             ],
           ),
-          body: const CustomListView()),
+          body:  ListView()),
     );
+  }
+}
+
+class ListView extends StatefulWidget {
+  const ListView({
+    super.key,
+  });
+
+  @override
+  State<ListView> createState() => _ListViewState();
+}
+
+
+class _ListViewState extends State<ListView> {
+   @override
+initState()
+{
+  BlocProvider.of<NotesCubit>(context).fetchAllanotes() ;
+  super.initState() ;
+}
+  @override
+  Widget build(BuildContext context) {
+    return CustomListView();
   }
 }
