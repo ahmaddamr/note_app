@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:note_app/cubits/cubit/notes_cubit/notes_cubit.dart';
+import 'package:note_app/models/note_model.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
-class EditNoteView extends StatelessWidget {
-  const EditNoteView({super.key});
+class EditNoteView extends StatefulWidget {
+  const EditNoteView({super.key, required this.note, this.onpressed});
   // static String id = 'EditView' ;
+  
+  final NoteModel note ;
+  final void Function()? onpressed ;
 
+  @override
+  State<EditNoteView> createState() => _EditNoteViewState();
+}
+
+class _EditNoteViewState extends State<EditNoteView> {
+    String? title , content ;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +40,16 @@ class EditNoteView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     color: Colors.white.withOpacity(0.1)),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () 
+                  {
+                    
+                    widget.note.title = title ?? widget.note.title ;
+                    widget.note.subtitle = content ?? widget.note.title ;
+                    widget.note.save() ;
+                    BlocProvider.of<NotesCubit>(context).fetchAllanotes() ;
+                    Navigator.pop(context) ;
+
+                  } ,
                   icon:const Icon(Icons.done_outline),
                   iconSize: 23,
                 ),
@@ -38,8 +59,17 @@ class EditNoteView extends StatelessWidget {
         ),
       body:  Column(
             children: [
-              CustomTextField(hint: 'Title'),
-              CustomTextField(hint: 'Content',
+              CustomTextField(
+                onChanged: (value) 
+                {
+                    title = value ;
+                } ,
+                hint: 'Title'),
+              CustomTextField(onChanged: (value)
+              {
+                content = value ;
+              } 
+              , hint: 'Content',
               maxLines: 7,),
               
             ],

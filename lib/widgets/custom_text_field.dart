@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-    CustomTextField({super.key,required this.hint,  this.maxLines = 1, this.onSaved});
+    CustomTextField({super.key,required this.hint,  this.maxLines = 1, this.onSaved, this.onChanged});
   
   String hint ;
   final int maxLines ;
   final void Function(String?)? onSaved ;
+  final Function(String)?  onChanged ;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only( top: 20.0 ,right: 12 , left: 12),
       child: TextFormField(
+        onChanged: onChanged,
         validator: (value) {
           if(value?.isEmpty ?? true)
           {
