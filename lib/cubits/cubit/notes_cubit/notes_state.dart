@@ -9,6 +9,8 @@ sealed class NotesState extends Equatable {
 
 final class NotesInitial extends NotesState {}
 final class NotesLoading extends NotesState {}
+final class NotesSuccess extends NotesState {}
+
 // final class NotesSuccess extends NotesState {
 //   // NotesSuccess(List<NoteModel>? notes);
 //     final List<NoteModel> notes;
