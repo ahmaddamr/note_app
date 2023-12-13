@@ -6,13 +6,27 @@ import 'package:note_app/widgets/custom_text_field.dart';
 import 'package:note_app/widgets/modal_bottom_sheet.dart';
 import 'package:note_app/widgets/notes_list_view.dart';
 
-class NotesView extends StatelessWidget {
+class NotesView extends StatefulWidget {
   const NotesView({super.key});
 
+  @override
+  State<NotesView> createState() => _NotesViewState();
+}
+
+
+class _NotesViewState extends State<NotesView> {
+
+//   @override
+// initState()
+// {
+//   BlocProvider.of<NotesCubit>(context).fetchAllanotes() ;
+//   super.initState() ;
+// }
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NotesCubit(),
+      
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
             onPressed: () {
