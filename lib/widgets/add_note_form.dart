@@ -50,6 +50,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 const SizedBox(
                   height: 40,
                 ),
+                ColorListView(),
                 CustomButton(
                     onPressed: () {
                       if (FormKey.currentState!.validate()) {
@@ -73,6 +74,36 @@ class _AddNoteFormState extends State<AddNoteForm> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ColorItem extends StatelessWidget {
+  const ColorItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircleAvatar(
+      radius: 32,
+      backgroundColor: Colors.blueGrey,
+    );
+  }
+}
+
+class ColorListView extends StatelessWidget {
+  const ColorListView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 60,
+      child: ListView.builder(
+        itemCount: 10,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context , index)
+        {
+          return const  ColorItem() ;
+        }),
     );
   }
 }
