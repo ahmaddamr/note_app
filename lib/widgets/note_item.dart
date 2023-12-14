@@ -5,100 +5,76 @@ import 'package:note_app/models/note_model.dart';
 import 'package:note_app/views/edit_view.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key, required this.note});
-  // static String id = 'NoteItem' ;
-  final NoteModel note ;
+  const NoteItem({Key? key, required this.note}) : super(key: key);
+
+  final NoteModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)
-        {
-          return  EditNoteView(
-            note: note,
-          ) ; 
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return EditNoteView(
+              note: note,
+            );
+          }),
+        );
       },
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15),
-              child: Container(
-                // width: 385,
-                // height: 200,
-                padding:EdgeInsets.only(
-                  top: 15,
-                  bottom: 15
-                ) ,
-                color: Color(note.color),
-                child: Row(
-                  children: [
-                      Padding(
-                      padding: const EdgeInsets.only(left: 27.0, top: 5,bottom: 50),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            note.title,
-                            style:const TextStyle(
-                              color: Colors.black,
-                              fontSize: 27,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 23,
-                          ),
-                          Text(
-                            note.subtitle,
-                            style: TextStyle(
-                              color: const Color.fromARGB(255, 38, 36, 36),
-                              fontSize: 18,
-                              fontWeight: FontWeight.w100,
-                            ),
-                          ),
-                        ],
-                      ),
+      child: Padding(
+        padding: EdgeInsets.all(10),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Color(note.color),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.all(15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              ListTile(
+                title: Text(
+                  note.title,
+                  style: const TextStyle(
+                    fontSize: 26,
+                    color: Colors.black,
+                  ),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    note.subtitle,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black.withOpacity(.4),
                     ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 30.0, bottom: 70),
-                          child: IconButton(
-                            onPressed: () 
-                            {
-                              note.delete() ;
-                              BlocProvider.of<NotesCubit>(context).fetchAllanotes();
-                            },
-                            icon: Icon(
-                              Icons.delete,
-                              color: Colors.black,
-                            ),
-                            iconSize: 33,
-                          ),
-                        ),
-                          Padding(
-                          padding: const EdgeInsets.only(left: 5.0,top:25),
-                          child: Text(
-                            note.date,
-                            style: TextStyle(
-                              color:  Colors.black.withOpacity(.5),
-                              fontSize: 14,
-                              fontWeight: FontWeight.w100,
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ],
+                  ),
+                ),
+                trailing: IconButton(
+                  onPressed: () {
+                    note.delete();
+      
+                    BlocProvider.of<NotesCubit>(context).fetchAllanotes();
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Colors.black,
+                    size: 30,
+                  ),
                 ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Text(
+                  note.date,
+                  style: TextStyle(
+                    color: Colors.black.withOpacity(.4),
+                  ),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
