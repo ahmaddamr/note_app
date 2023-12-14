@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:note_app/cubits/cubit/add_note_cubit.dart';
 import 'package:note_app/models/note_model.dart';
+import 'package:note_app/widgets/colors_list_view.dart';
 import 'package:note_app/widgets/custom_button.dart';
 import 'package:note_app/widgets/custom_text_field.dart';
 
@@ -20,7 +21,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   String? title, subTitle;
-  final bool isloading ;
+  final bool isloading;
 
   _AddNoteFormState({this.isloading = false});
   @override
@@ -30,8 +31,10 @@ class _AddNoteFormState extends State<AddNoteForm> {
       autovalidateMode: autovalidateMode,
       child: Container(
         child: Padding(
-          padding:  EdgeInsets.only(left: 5.0, right: 5,
-          bottom: MediaQuery.of(context).viewInsets.bottom  ),
+          padding: EdgeInsets.only(
+              left: 5.0,
+              right: 5,
+              bottom: MediaQuery.of(context).viewInsets.bottom),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -50,20 +53,23 @@ class _AddNoteFormState extends State<AddNoteForm> {
                 const SizedBox(
                   height: 40,
                 ),
-                ColorListView(),
+                ColorListView(
+                  
+                ),
                 CustomButton(
                     onPressed: () {
                       if (FormKey.currentState!.validate()) {
                         FormKey.currentState!.save();
-                        var currentDate = DateTime.now() ;
-                        var formatedCurrentDAte = DateFormat.MEd().format(currentDate) ;
+                        var currentDate = DateTime.now();
+                        var formatedCurrentDAte =
+                            DateFormat.MEd().format(currentDate);
                         NoteModel noteModel = NoteModel(
                             title: title!,
                             subtitle: subTitle!,
                             date: formatedCurrentDAte,
                             color: Colors.amber.value);
-                        BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                        
+                        BlocProvider.of<AddNoteCubit>(context)
+                            .addNote(noteModel);
                       } else {
                         autovalidateMode = AutovalidateMode.always;
                       }
@@ -78,32 +84,18 @@ class _AddNoteFormState extends State<AddNoteForm> {
   }
 }
 
-class ColorItem extends StatelessWidget {
-  const ColorItem({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-      radius: 32,
-      backgroundColor: Colors.blueGrey,
-    );
-  }
-}
 
-class ColorListView extends StatelessWidget {
-  const ColorListView({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: ListView.builder(
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context , index)
-        {
-          return const  ColorItem() ;
-        }),
-    );
-  }
-}
+
+
+
+
+
+
+
+
+
+
+
+
